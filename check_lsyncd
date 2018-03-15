@@ -58,13 +58,13 @@ if [ -z "$result" ]; then
 fi
 
 # Check if the statusfile exists.
-if [ ! -f $statusfile ]; then
+if [ ! -f "$statusfile" ]; then
 	echo "lsyncd CRITICAL: statusfile not found."
 	exit 2
 fi
 
 # Get number of delays from statusfile
-delays=$(awk '/^There are [0-9] delays/ { count += $3; } END { print count; }' /var/run/lsyncd.status)
+delays=$(awk '/^There are [0-9] delays/ { count += $3; } END { print count; }' "$statusfile")
 if [ "$delays" -ge $crit_delays ]; then
 	echo "lsyncd CRITICAL: there are $delays delays"
 	exit 2
