@@ -34,7 +34,7 @@ The plugin requires a `statusFile` to be configured. The path defaults to
 
 ### Icinga2 configuration
 
-Copy `check_lsyncd.icinga2.conf` to the icinga2 zone and define a new service for all Linux hosts with `vars.lsyncd`, for example:
+Define a new service for all Linux hosts with `vars.lsyncd`, for example:
 
 ```
 apply Service "Lsyncd status" {
