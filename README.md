@@ -32,6 +32,20 @@ The plugin requires a `statusFile` to be configured. The path defaults to
     -s PATH
         Set status file path (default: /var/run/lsyncd.status).
 
+### Icinga2 configuration
+
+Define a new service for all Linux hosts with `vars.lsyncd`, for example:
+
+```
+apply Service "Lsyncd status" {
+  import "generic-service"
+  check_command = "lsyncd"
+  vars.lsyncd_statfile = "/var/log/lsyncd/lsyncd.stat"
+  command_endpoint = host.vars.client_endpoint
+  assign where host.vars.client_endpoint && host.vars.os == "Linux" && host.vars.lsyncd
+}
+```
+
 ## Author
 
 Oliver Hitz <oliver@net-track.ch>
