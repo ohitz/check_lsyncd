@@ -64,7 +64,7 @@ if [ ! -f "$statusfile" ]; then
 fi
 
 # Get number of delays from statusfile
-delays=$(awk '/^There are [0-9] delays/ { count += $3; } END { print count; }' "$statusfile")
+delays=$(awk '/^There are [0-9]+ delays/ { count += $3; } END { print count; }' "$statusfile")
 if [ "$delays" -ge $crit_delays ]; then
 	echo "lsyncd CRITICAL: there are $delays delays | delay=$delays"
 	exit 2
